@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        #error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<form id="loginForm">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+
+    <button type="button" onclick="validateEmail()">Login</button>
+</form>
+
+<div id="error-message"></div>
+
+<script>
+    function validateEmail() {
+        var email = document.getElementById("email").value;
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailRegex.test(email)) {
+            document.getElementById("error-message").innerText = "";
+            alert("Login successful! Email is valid.");
+        } else {
+            document.getElementById("error-message").innerText = "Invalid email format. Please enter a valid email address.";
+        }
+    }
+</script>
+
+</body>
+</html>

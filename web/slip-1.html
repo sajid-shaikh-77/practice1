@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        margin-bottom: 10px;
+      }
+
+      #error-message {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="registrationForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required />
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required />
+
+      <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <div id="error-message"></div>
+
+    <script>
+      function validateForm() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var age = document.getElementById("age").value;
+
+        var errorMessage = "";
+
+        // Validate first name and last name (alphabets only)
+        var nameRegex = /^[A-Za-z]+$/;
+        if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+          errorMessage +=
+            "First name and last name should contain only alphabets.\n";
+        }
+
+        // Validate age (between 18 and 50)
+        if (isNaN(age) || age < 18 || age > 50) {
+          errorMessage += "Age should be a number between 18 and 50.\n";
+        }
+
+        // Display error message or submit the form
+        if (errorMessage !== "") {
+          document.getElementById("error-message").innerText = errorMessage;
+        } else {
+          document.getElementById("error-message").innerText = "";
+          document.getElementById("registrationForm").submit();
+        }
+      }
+    </script>
+  </body>
+</html>

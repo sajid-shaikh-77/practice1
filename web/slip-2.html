@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Registration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        margin-bottom: 10px;
+      }
+
+      #error-message {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="employeeForm">
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required />
+
+      <label for="joiningDate">Joining Date:</label>
+      <input type="date" id="joiningDate" name="joiningDate" required />
+
+      <label for="salary">Salary:</label>
+      <input type="number" id="salary" name="salary" required />
+
+      <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <div id="error-message"></div>
+
+    <script>
+      function validateForm() {
+        var dob = document.getElementById("dob").value;
+        var joiningDate = document.getElementById("joiningDate").value;
+        var salary = document.getElementById("salary").value;
+
+        var errorMessage = "";
+
+        // Validate Date of Birth (DOB)
+        var dobRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (!dobRegex.test(dob)) {
+          errorMessage +=
+            "Invalid Date of Birth (DOB). Please use the format YYYY-MM-DD.\n";
+        }
+
+        // Validate Joining Date
+        if (!dobRegex.test(joiningDate)) {
+          errorMessage +=
+            "Invalid Joining Date. Please use the format YYYY-MM-DD.\n";
+        }
+
+        // Validate Salary (positive number)
+        if (isNaN(salary) || salary <= 0) {
+          errorMessage += "Invalid Salary. Please enter a positive number.\n";
+        }
+
+        // Display error message or submit the form
+        if (errorMessage !== "") {
+          document.getElementById("error-message").innerText = errorMessage;
+        } else {
+          document.getElementById("error-message").innerText = "";
+          document.getElementById("employeeForm").submit();
+        }
+      }
+    </script>
+  </body>
+</html>
